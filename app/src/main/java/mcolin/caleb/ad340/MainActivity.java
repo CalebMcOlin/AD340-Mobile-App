@@ -19,48 +19,38 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Button names
-    public String[] btnNames = {"Button 1", "Button 2", "Button 3", "Button 4"};
+    private String[] btnNames = {"Button 1", "Button 2", "Button 3", "Button 4"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         // Initiate and create the GridView
         GridView gridView = findViewById(R.id.gridView);
-        final ButtonAdapter buttonAdapter = new ButtonAdapter(this);
+        final ButtonAdapter buttonAdapter = new ButtonAdapter(this, btnNames);
         gridView.setAdapter(buttonAdapter);
-
-        // OnClickListener
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String btn = btnNames[position];
-//                Toast.makeText(MainActivity.this, "click", Toast.LENGTH_LONG).show();
-                Log.d("myTag", "" + btn);
-                buttonAdapter.notifyDataSetChanged();
-            }
-        });
     }
 
     /**
-     * Inner Class
+     * Inner Adapter class
      */
     public class ButtonAdapter extends BaseAdapter {
         private Context context;
+        private String[] btnView;
 
-        public ButtonAdapter(Context c) {
+        public ButtonAdapter(Context c, String[] b) {
             this.context = c;
+            this.btnView = b;
         }
 
         public int getCount() {
-            return btnNames.length;
+            return btnView.length;
         }
 
         // NOT USED
         public String getItem(int i) {
-            return btnNames[i];
+            return btnView[i];
         }
 
         // NOT USED
@@ -77,20 +67,23 @@ public class MainActivity extends AppCompatActivity {
                 btn = (Button) view;
             }
 
-            btn.setText(btnNames[i]);
+            btn.setText(btnView[i]);
             btn.setId(i);
             btn.setOnClickListener(new BtnOnClickListener());
             return btn;
         }
     }
 
+    /**
+     * Inner Class
+     */
     public class BtnOnClickListener implements View.OnClickListener {
+
         @Override
         public void onClick(View v) {
             int id = v.getId();
             Toast toast = Toast.makeText(getApplicationContext(), btnNames[id], Toast.LENGTH_SHORT);
             toast.show();
-
         }
     }
 }
