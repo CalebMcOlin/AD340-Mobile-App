@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Button names
     private String[] btnNames = {"Button 1", "Button 2", "Button 3", "Button 4"};
+    private Button mSendBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
         GridView gridView = findViewById(R.id.gridView);
         final ButtonAdapter buttonAdapter = new ButtonAdapter(this, btnNames);
         gridView.setAdapter(buttonAdapter);
+
+        // Send button
+        mSendBtn = findViewById(R.id.sendBtn);
+        mSendBtn.setOnClickListener(new BtnOnClickListener());
+
     }
 
     /**
@@ -75,14 +81,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Inner Class
+     * Inner Button Click listener Class
      */
     public class BtnOnClickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
+            // Cast to button to get the text
+            Button btn = (Button) v;
             int id = v.getId();
-            Toast toast = Toast.makeText(getApplicationContext(), btnNames[id], Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), btn.getText(), Toast.LENGTH_SHORT);
             toast.show();
         }
     }
