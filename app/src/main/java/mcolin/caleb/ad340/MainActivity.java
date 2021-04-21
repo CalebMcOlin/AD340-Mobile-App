@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Inner Adapter class
      */
-    public class ButtonAdapter extends BaseAdapter {
+    private class ButtonAdapter extends BaseAdapter {
         private Context context;
         private String[] btnView;
 
@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
         public View getView(int i, View view, ViewGroup parent) {
             Button btn;
-
             if (view == null) {
                 btn = new Button(context);
             } else {
@@ -83,13 +82,12 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Inner Button Click listener Class
      */
-    public class BtnOnClickListener implements View.OnClickListener {
+    private class BtnOnClickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
             // Cast to button to get the text
             Button btn = (Button) v;
-            int id = v.getId();
             Toast toast = Toast.makeText(getApplicationContext(), btn.getText(), Toast.LENGTH_SHORT);
             toast.show();
         }
