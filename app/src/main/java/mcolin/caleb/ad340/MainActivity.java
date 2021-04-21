@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         // Send button
         mSendBtn = findViewById(R.id.sendBtn);
         mSendBtn.setOnClickListener(new BtnOnClickListener());
-
     }
 
     /**
