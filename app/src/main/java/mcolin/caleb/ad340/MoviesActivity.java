@@ -10,5 +10,8 @@ public class MoviesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
+
+        // Action Bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

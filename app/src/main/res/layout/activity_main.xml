@@ -21,8 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.94"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <EditText
         android:id="@+id/textEntry"
@@ -46,29 +45,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textEntry" />
 
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
+    <GridView
+        android:id="@+id/gridView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
+        android:columnWidth="90dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/sendBtn"
         app:layout_constraintStart_toStartOf="@+id/textEntry"
-        app:layout_constraintTop_toBottomOf="@+id/textEntry">
-
-        <GridView
-            android:id="@+id/gridView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:columnWidth="90dp"
-            android:gravity="center"
-            android:horizontalSpacing="10dp"
-            android:numColumns="2"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="10dp" />
-
-    </RelativeLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textEntry" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

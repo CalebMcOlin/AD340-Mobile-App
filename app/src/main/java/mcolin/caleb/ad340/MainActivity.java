@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
 
-    // Button names
+    // Button for the gridView
     private String[] btnNames = {"Movies", "Button 2", "Button 3", "Button 4"};
     private Button mSendBtn;
 
@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Action Bar
+        getSupportActionBar().setTitle("Home");
 
         // Initiate and create the GridView
         GridView gridView = findViewById(R.id.gridView);
@@ -35,13 +38,6 @@ public class MainActivity extends AppCompatActivity {
         mSendBtn.setOnClickListener(new BtnOnClickListener());
     }
 
-    /**
-     * Open the Movie Activity
-     */
-    public void openMovies(View v) {
-        Intent intent = new Intent(this, MoviesActivity.class);
-        MainActivity.this.startActivity(intent);
-    }
 
     /**
      * Inner Button Click listener Class
@@ -52,8 +48,11 @@ public class MainActivity extends AppCompatActivity {
             // Cast to button to get the text
             Button btn = (Button) v;
 
+            // TO DO: make a switch statement
             if (btn.getText() == "Movies") {
-                openMovies(v);
+                Intent intent = new Intent(getBaseContext(), MoviesActivity.class);
+                startActivity(intent);
+
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), btn.getText(), Toast.LENGTH_SHORT);
                 toast.show();
@@ -94,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 btn = (Button) view;
             }
-
             btn.setText(btnView[i]);
             btn.setId(i);
             btn.setOnClickListener(new BtnOnClickListener());
