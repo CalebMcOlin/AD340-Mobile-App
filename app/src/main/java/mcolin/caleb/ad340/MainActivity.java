@@ -3,12 +3,10 @@ package mcolin.caleb.ad340;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityManager;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -19,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Button names
-    private String[] btnNames = {"Button 1", "Button 2", "Button 3", "Button 4"};
+    private String[] btnNames = {"Movies", "Button 2", "Button 3", "Button 4"};
     private Button mSendBtn;
 
     @Override
@@ -35,6 +33,32 @@ public class MainActivity extends AppCompatActivity {
         // Send button
         mSendBtn = findViewById(R.id.sendBtn);
         mSendBtn.setOnClickListener(new BtnOnClickListener());
+    }
+
+    /**
+     * Open the Movie Activity
+     */
+    public void openMovies(View v) {
+        Intent intent = new Intent(this, MoviesActivity.class);
+        MainActivity.this.startActivity(intent);
+    }
+
+    /**
+     * Inner Button Click listener Class
+     */
+    private class BtnOnClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            // Cast to button to get the text
+            Button btn = (Button) v;
+
+            if (btn.getText() == "Movies") {
+                openMovies(v);
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(), btn.getText(), Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
     }
 
     /**
@@ -75,20 +99,6 @@ public class MainActivity extends AppCompatActivity {
             btn.setId(i);
             btn.setOnClickListener(new BtnOnClickListener());
             return btn;
-        }
-    }
-
-    /**
-     * Inner Button Click listener Class
-     */
-    private class BtnOnClickListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            // Cast to button to get the text
-            Button btn = (Button) v;
-            Toast toast = Toast.makeText(getApplicationContext(), btn.getText(), Toast.LENGTH_SHORT);
-            toast.show();
         }
     }
 }
