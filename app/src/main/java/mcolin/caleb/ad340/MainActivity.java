@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Shows all the menu options in the ActionBar
+     * Shows all the MENU options in the ActionBar
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * EventHandler for all the options in the menu
+     * EventHandler for all the options in the MENU
      */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             // Cast to button to get the text
             Button btn = (Button) v;
-
             // TO DO: make a switch statement
             if (btn.getText() == "Movies") {
                 Intent intent = new Intent(getBaseContext(), MoviesActivity.class);
