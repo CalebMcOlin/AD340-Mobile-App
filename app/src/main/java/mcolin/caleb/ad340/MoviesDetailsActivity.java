@@ -2,16 +2,17 @@ package mcolin.caleb.ad340;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Objects;
+import com.squareup.picasso.Picasso;
 
 public class MoviesDetailsActivity extends AppCompatActivity {
 
@@ -20,11 +21,23 @@ public class MoviesDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies_details);
 
-        // ActionBar -> Toolbar
-        getSupportActionBar().setSubtitle("Details");
+        // Declaring view for population
+        TextView details = findViewById(R.id.movieDetails);
+        ImageView imageView = findViewById(R.id.movieImage);
+
+        // Getting the details from the previous activity and populating the text view with them
+        String[] movieDetails = getIntent().getStringArrayExtra("EXTRA_MOVIE_DETAILS");
+
+        // Setting the given info in the activity
+        getSupportActionBar().setTitle(movieDetails[0]);
+        getSupportActionBar().setSubtitle(movieDetails[2] + " - " + movieDetails[1]);
+        details.setText(movieDetails[4]);
+        // TODO Find a way to make this work
+//        Picasso.get().load("https://cdn.collider.com/wp-content/uploads/2016/10/night-of-comet.jpg").into(imageView);
     }
 
     /**
+     * MENU
      * Shows all the menu options in the ActionBar
      */
     @Override
@@ -35,6 +48,7 @@ public class MoviesDetailsActivity extends AppCompatActivity {
     }
 
     /**
+     * MENU
      * EventHandler for all the options in the menu
      */
     @Override

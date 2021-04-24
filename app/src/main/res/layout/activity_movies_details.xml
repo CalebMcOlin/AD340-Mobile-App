@@ -7,4 +7,18 @@
     android:background="#ADDCA8"
     tools:context=".MoviesDetailsActivity">
 
+    <ImageView
+        android:id="@+id/movieImageDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/movieDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/movieImageDetails" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

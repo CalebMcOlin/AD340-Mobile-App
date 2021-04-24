@@ -2,7 +2,6 @@ package mcolin.caleb.ad340;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,14 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Objects;
+import com.squareup.picasso.Picasso;
 
 public class MoviesActivity extends AppCompatActivity {
 
@@ -61,22 +58,7 @@ public class MoviesActivity extends AppCompatActivity {
     }
 
     /**
-     * ClickHandler that opens a new activity while passing movie details to it.
-     * @param v View
-     */
-    public void selectMovie(View v){
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
-
-
-    /**
-     * Inner Adapter class
+     * Inner Adapter class for populating the ListView
      */
     private class MovieAdapter extends ArrayAdapter<String[]> {
         private Context context;
@@ -103,28 +85,33 @@ public class MoviesActivity extends AppCompatActivity {
                 ImageView movieImage = itemView.findViewById(R.id.movieImage);
 
                 // OnClickListener for the view. (Each itemView will act as a button)
-                View finalItemView = itemView;
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                        // toast to notify the chosen movie title
+                        Toast.makeText(getApplicationContext(), movies[position][0], Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getBaseContext(), MoviesDetailsActivity.class);
-//                        intent.putExtra("EXTRA_MOVIE_DETAILS", movies[position][3]);
+                        // Passing all the details to the next activity
+                        intent.putExtra("EXTRA_MOVIE_DETAILS", movies[position]);
                         startActivity(intent);
                     }
                 });
 
+                // Placing all in data in the appropriate views
                 movieTitle.setText(movies[position][0]);
                 movieDate.setText(movies[position][1]);
                 movieDirector.setText(movies[position][2]);
-                // TODO set movieImage
+                // TODO Find a way to make this work
+//                Picasso.get().setIndicatorsEnabled(true);
+//                Picasso.get().load(movies[position][3]).into(movieImage);
             }
             return itemView;
         }
     }
 
     /**
-     * Shows all the MENU options in the ActionBar
+     * MENU
+     * Shows all the menu options in the ActionBar
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -134,7 +121,8 @@ public class MoviesActivity extends AppCompatActivity {
     }
 
     /**
-     * EventHandler for all the options in the MENU
+     * MENU
+     * EventHandler for all the options in the menu
      */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -150,5 +138,4 @@ public class MoviesActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }
