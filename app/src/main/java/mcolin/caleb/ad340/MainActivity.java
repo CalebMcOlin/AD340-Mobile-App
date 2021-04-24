@@ -1,5 +1,6 @@
 package mcolin.caleb.ad340;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -31,10 +33,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        // Actionbar -> Toolbar
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
         // Initiate and create the GridView
         GridView gridView = findViewById(R.id.gridView);
         final ButtonAdapter buttonAdapter = new ButtonAdapter(this, btnNames);
@@ -45,11 +43,32 @@ public class MainActivity extends AppCompatActivity {
         mSendBtn.setOnClickListener(new BtnOnClickListener());
     }
 
+    /**
+     * Shows all the menu options in the ActionBar
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
         return true;
+    }
+
+    /**
+     * EventHandler for all the options in the menu
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.fire:
+                Toast.makeText(this, "Fire Baby!", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.about:
+                Intent intent = new Intent(getBaseContext(), AboutActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /**
@@ -67,8 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
             } else {
-                Toast toast = Toast.makeText(getApplicationContext(), btn.getText(), Toast.LENGTH_SHORT);
-                toast.show();
+                Toast.makeText(getApplicationContext(), btn.getText(), Toast.LENGTH_SHORT).show();
             }
         }
     }

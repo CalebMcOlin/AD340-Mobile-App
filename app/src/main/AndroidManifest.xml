@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AboutActivity"
+            android:label="@string/aboutLabel"/>
+        <activity
             android:name=".MoviesDetailsActivity"
             android:label="@string/movieLabel"
             android:parentActivityName=".MoviesActivity" />
@@ -22,6 +25,7 @@
             android:label="@string/homeLabel">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
