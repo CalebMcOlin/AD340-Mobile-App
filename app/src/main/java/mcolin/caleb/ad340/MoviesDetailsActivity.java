@@ -15,9 +15,6 @@ public class MoviesDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movies_details);
 
         // ActionBar -> Toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setSubtitle("Details");
     }
 }
