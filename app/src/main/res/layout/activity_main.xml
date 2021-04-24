@@ -7,6 +7,19 @@
     android:background="#ADDCA8"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:id="@+id/toolbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            layout="@layout/toolbar" />
+    </LinearLayout>
+
+
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
@@ -15,7 +28,7 @@
         android:layout_marginBottom="5dp"
         android:text="@string/devName"
         android:textColor="#000000"
-        android:textSize="8sp"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,11 +43,12 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:autofillHints=""
+        android:hint="@string/textBox"
         android:inputType="text"
-        android:text="@string/textBox"
         app:layout_constraintEnd_toStartOf="@+id/sendBtn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarLayout" />
 
     <Button
         android:id="@+id/sendBtn"

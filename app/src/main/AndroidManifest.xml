@@ -8,19 +8,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AD340MobileApp">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MoviesDetailsActivity"
-            android:label="Movies"
+            android:label="@string/movieLabel"
             android:parentActivityName=".MoviesActivity" />
         <activity
             android:name=".MoviesActivity"
-            android:label="Movies"
+            android:label="@string/movieLabel"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/homeLabel">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

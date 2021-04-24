@@ -12,6 +12,10 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.Toolbar;
+
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,8 +29,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Action Bar
-        getSupportActionBar().setTitle("Home");
+        // Actionbar -> Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // Initiate and create the GridView
         GridView gridView = findViewById(R.id.gridView);

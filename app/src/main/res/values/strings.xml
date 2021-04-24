@@ -3,4 +3,6 @@
     <string name="devName">by Caleb McOlin</string>
     <string name="textBox">Enter text here...</string>
     <string name="sendBtn">Send</string>
+    <string name="movieLabel">Movies</string>
+    <string name="homeLabel">Home</string>
 </resources>
