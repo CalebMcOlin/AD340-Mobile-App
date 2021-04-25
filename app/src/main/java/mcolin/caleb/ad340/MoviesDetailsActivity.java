@@ -23,7 +23,7 @@ public class MoviesDetailsActivity extends AppCompatActivity {
 
         // Declaring view for population
         TextView details = findViewById(R.id.movieDetails);
-        ImageView imageView = findViewById(R.id.movieImage);
+        ImageView imageView = findViewById(R.id.movieImageDetails);
 
         // Getting the details from the previous activity and populating the text view with them
         String[] movieDetails = getIntent().getStringArrayExtra("EXTRA_MOVIE_DETAILS");
@@ -31,9 +31,8 @@ public class MoviesDetailsActivity extends AppCompatActivity {
         // Setting the given info in the activity
         getSupportActionBar().setTitle(movieDetails[0]);
         getSupportActionBar().setSubtitle(movieDetails[2] + " - " + movieDetails[1]);
+        Picasso.get().load(movieDetails[3]).into(imageView);
         details.setText(movieDetails[4]);
-        // TODO Find a way to make this work
-//        Picasso.get().load("https://cdn.collider.com/wp-content/uploads/2016/10/night-of-comet.jpg").into(imageView);
     }
 
     /**
