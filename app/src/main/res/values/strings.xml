@@ -8,4 +8,6 @@
     <string name="movieImage">Movie Image</string>
     <string name="back">Go back</string>
     <string name="about">This app was made by Caleb McOlin.<br/> During his time in the Application Development program at North Seattle College.</string>
+    <string name="fire">fire</string>
+    <string name="aboutOption">About</string>
 </resources>

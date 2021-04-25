@@ -5,12 +5,12 @@
     <item
         android:id="@+id/fire"
         android:icon="@drawable/ic_fire"
-        android:title="fire"
+        android:title="@string/fire"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/about"
-        android:title="About"
+        android:title="@string/aboutOption"
         app:showAsAction="never" />
 
 </menu>
