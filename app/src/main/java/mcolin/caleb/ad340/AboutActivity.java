@@ -13,12 +13,15 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         // back button
         Button mbackBtn = (Button) findViewById(R.id.exitAbout);

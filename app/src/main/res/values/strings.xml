@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mobile App</string>
+    <string name="app_name">AD 340</string>
     <string name="textBox">Enter text here...</string>
     <string name="sendBtn">Send</string>
     <string name="movieLabel">Movies</string>

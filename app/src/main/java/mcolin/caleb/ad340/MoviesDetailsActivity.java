@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 public class MoviesDetailsActivity extends AppCompatActivity {
 
     @Override
@@ -29,7 +31,7 @@ public class MoviesDetailsActivity extends AppCompatActivity {
         String[] movieDetails = getIntent().getStringArrayExtra("EXTRA_MOVIE_DETAILS");
 
         // Setting the given info in the activity
-        getSupportActionBar().setTitle(movieDetails[0]);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(movieDetails[0]);
         getSupportActionBar().setSubtitle(movieDetails[2] + " - " + movieDetails[1]);
         Picasso.get().load(movieDetails[3]).into(imageView);
         details.setText(movieDetails[4]);

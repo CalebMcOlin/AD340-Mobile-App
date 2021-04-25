@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Button for the gridView
-    private String[] btnNames = {"Movies", "Button 2", "Button 3", "Button 4"};
-    private Button mSendBtn;
+    private final String[] btnNames = {"Movies", "Button 2", "Button 3", "Button 4"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Home");
 
         // Initiate and create the GridView
         GridView gridView = findViewById(R.id.gridView);
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         gridView.setAdapter(buttonAdapter);
 
         // Send button
-        mSendBtn = findViewById(R.id.sendBtn);
+        Button mSendBtn = findViewById(R.id.sendBtn);
         mSendBtn.setOnClickListener(new BtnOnClickListener());
     }
 
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.fire:
                 Toast.makeText(this, "Fire Baby!", Toast.LENGTH_SHORT).show();
@@ -94,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
      * Inner Adapter class
      */
     private class ButtonAdapter extends BaseAdapter {
-        private Context context;
-        private String[] btnView;
+        private final Context context;
+        private final String[] btnView;
 
         public ButtonAdapter(Context c, String[] b) {
             this.context = c;
