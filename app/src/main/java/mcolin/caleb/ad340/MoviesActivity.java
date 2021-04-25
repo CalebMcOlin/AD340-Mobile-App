@@ -3,6 +3,7 @@ package mcolin.caleb.ad340;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -74,6 +75,7 @@ public class MoviesActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             // inflating and populating the given view (movies_list_item)
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            @SuppressLint("ViewHolder")
             View itemView = inflater.inflate(R.layout.movies_list_item, parent, false);
             // Identifying each element in the View for population
             TextView movieTitle = itemView.findViewById(R.id.movieTitle);
@@ -83,7 +85,7 @@ public class MoviesActivity extends AppCompatActivity {
 
             // Placing all in data in the appropriate views
             movieTitle.setText(movies[position][0]);
-            movieDate.setText(movies[position][1]);
+            movieDate.setText(String.format(" - %s", movies[position][1]));
             movieDirector.setText(movies[position][2]);
             Picasso.get().load(movies[position][3]).into(movieImage);
 
