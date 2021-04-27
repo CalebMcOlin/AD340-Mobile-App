@@ -56,7 +56,9 @@ public class MoviesDetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.fire:
-                Toast.makeText(this, "Fire Baby!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Refresh!", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(getIntent());
                 return true;
             case R.id.about:
                 Intent intent = new Intent(getBaseContext(), AboutActivity.class);

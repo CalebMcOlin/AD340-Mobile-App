@@ -12,6 +12,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Background color. -->
-        <item name="android:colorBackground">@color/mint</item>
+        <item name="android:colorBackground">@color/babyBlue</item>
     </style>
 </resources>
