@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.net.Network;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,7 +35,6 @@ import java.util.ArrayList;
 
 public class TrafficActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
     private RequestQueue requestQueue;
     private ArrayList<CamItem> camItemArrayList;
     private CamAdapter camAdapter;
@@ -45,13 +44,16 @@ public class TrafficActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_traffic);
 
-        // Initiate RecyclerView
-        recyclerView = findViewById(R.id.trafficCams);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         // Initiate ArrayList of items
         camItemArrayList = new ArrayList<>();
+        // Initiate Adapter with an empty ArrayList
+        camAdapter = new CamAdapter(TrafficActivity.this, camItemArrayList);
+
+        // Initiate RecyclerView
+        RecyclerView recyclerView = findViewById(R.id.trafficCams);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(camAdapter);
 
         // Initiate RequestQueue from 'Volley' for loading data from external source
         requestQueue = Volley.newRequestQueue(this);
@@ -61,7 +63,7 @@ public class TrafficActivity extends AppCompatActivity {
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             gatherData();
-        }else{
+        } else {
             Toast.makeText(getApplicationContext(), "No connection Detected.", Toast.LENGTH_SHORT).show();
         }
     }
@@ -94,8 +96,9 @@ public class TrafficActivity extends AppCompatActivity {
                                 camItemArrayList.add(new CamItem(id, type, address, imageUrl));
                             }
                         }
-                        camAdapter = new CamAdapter(TrafficActivity.this, camItemArrayList);
-                        recyclerView.setAdapter(camAdapter);
+                        // Every time the ArrayList is updated the adapter in turn in updated.
+                        // This will reload the adapter open change
+                        camAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -116,7 +119,19 @@ public class TrafficActivity extends AppCompatActivity {
             mCameAddress = address;
             mCamId = id;
             mCamType = type;
-            mCamImageUrl = url;
+            mCamImageUrl = checkType(type, url);
+        }
+
+        public String checkType(String type, String url) {
+            String newUrl = "";
+            if (type.equals("sdot")) {
+                newUrl = "https://www.seattle.gov/trafficcams/images/" + url;
+            } else if (type.equals("wsdot")) {
+                newUrl = "https://images.wsdot.wa.gov/nw/" + url;
+            } else {
+                Log.i("TAG", "incorrect type");
+            }
+            return newUrl;
         }
 
         public String getCamId() {
