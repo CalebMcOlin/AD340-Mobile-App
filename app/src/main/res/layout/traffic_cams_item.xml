@@ -6,10 +6,9 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/movieTitle"
+        android:id="@+id/addressText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="viewStart"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -17,28 +16,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/movieDirector"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@+id/movieTitle"
-        app:layout_constraintTop_toBottomOf="@+id/movieTitle" />
-
-    <TextView
-        android:id="@+id/movieDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/movieDirector"
-        app:layout_constraintTop_toBottomOf="@id/movieTitle" />
-
     <ImageView
-        android:id="@+id/movieImage"
+        android:id="@+id/addressImage"
         android:layout_width="350dp"
         android:layout_height="145dp"
         android:layout_gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/movieDirector" />
+        app:layout_constraintTop_toBottomOf="@+id/addressText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

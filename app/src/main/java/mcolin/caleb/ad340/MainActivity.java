@@ -3,6 +3,7 @@ package mcolin.caleb.ad340;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Button for the gridView
-    private final String[] btnNames = {"Movies", "Button 2", "Button 3", "Button 4"};
+    private final String[] btnNames = {"Movies", "Live Cams", "Button 3", "Button 4"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +87,9 @@ public class MainActivity extends AppCompatActivity {
             if (btn.getText() == "Movies") {
                 Intent intent = new Intent(getBaseContext(), MoviesActivity.class);
                 startActivity(intent);
-
+            } else if (btn.getText() == "Live Cams"){
+                Intent intent = new Intent(getBaseContext(), TrafficActivity.class);
+                startActivity(intent);
             } else {
                 Toast.makeText(getApplicationContext(), btn.getText(), Toast.LENGTH_SHORT).show();
             }
