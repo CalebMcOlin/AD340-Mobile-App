@@ -165,7 +165,7 @@ public class TrafficActivity extends AppCompatActivity {
 
         @NonNull
         @Override
-        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(mContext).inflate(R.layout.traffic_item, parent, false);
             return new MyViewHolder(v);
         }
@@ -173,7 +173,6 @@ public class TrafficActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
-            Context mContext = holder.mCamImage.getContext();
             // Using 'position' to cycle through each item in the array
             CamItem currentItem = camItemsList.get(position);
             // Getting the data that was passed into the CamItem class
