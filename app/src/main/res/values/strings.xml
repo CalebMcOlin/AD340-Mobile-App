@@ -5,7 +5,7 @@
     <string name="movieLabel">Movies</string>
     <string name="homeLabel">Home</string>
     <string name="aboutLabel">About</string>
-    <string name="trafficLabel">Live Cams</string>
+    <string name="trafficLabel">Traffic Cams</string>
     <string name="movieImage">Movie Image</string>
     <string name="back">Go back</string>
     <string name="about">This app was made by Caleb McOlin.<br /> During his time in the Application Development program at North Seattle College.</string>
