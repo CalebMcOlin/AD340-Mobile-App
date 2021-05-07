@@ -11,4 +11,5 @@
     <string name="about">This app was made by Caleb McOlin.<br /> During his time in the Application Development program at North Seattle College.</string>
     <string name="refresh">Refresh Screen</string>
     <string name="aboutOption">About</string>
+    <string name="dash"> - </string>
 </resources>
