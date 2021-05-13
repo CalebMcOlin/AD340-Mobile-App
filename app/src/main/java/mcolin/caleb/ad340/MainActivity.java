@@ -1,15 +1,8 @@
 package mcolin.caleb.ad340;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -17,12 +10,10 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import androidx.appcompat.widget.Toolbar;
-
 import java.util.Objects;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
 
     // Button for the gridView
@@ -42,37 +33,6 @@ public class MainActivity extends AppCompatActivity {
         // Send button
         Button mSendBtn = findViewById(R.id.sendBtn);
         mSendBtn.setOnClickListener(new BtnOnClickListener());
-    }
-
-    /**
-     * Shows all the MENU options in the ActionBar
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    /**
-     * EventHandler for all the options in the MENU
-     */
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.fire:
-                Toast.makeText(this, "Refresh!", Toast.LENGTH_SHORT).show();
-                finish();
-                startActivity(getIntent());
-                return true;
-            case R.id.about:
-                Intent intent = new Intent(getBaseContext(), AboutActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     /**

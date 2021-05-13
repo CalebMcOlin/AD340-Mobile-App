@@ -1,10 +1,8 @@
 package mcolin.caleb.ad340;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class LocationActivity extends AppCompatActivity {
+public class LocationActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

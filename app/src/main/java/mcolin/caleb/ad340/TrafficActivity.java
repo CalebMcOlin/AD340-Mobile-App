@@ -1,20 +1,15 @@
 package mcolin.caleb.ad340;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -33,7 +28,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class TrafficActivity extends AppCompatActivity {
+public class TrafficActivity extends BaseActivity {
 
     private RequestQueue requestQueue;
     private ArrayList<CamItem> camItemArrayList;
@@ -208,38 +203,6 @@ public class TrafficActivity extends AppCompatActivity {
                 mCamType = itemView.findViewById(R.id.cam_type);
                 mCamAddress = itemView.findViewById(R.id.cam_address);
             }
-        }
-    }
-
-    /**
-     * MENU
-     * Shows all the menu options in the ActionBar
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    /**
-     * MENU
-     * EventHandler for all the options in the menu
-     */
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.fire:
-                Toast.makeText(this, "Refresh!", Toast.LENGTH_SHORT).show();
-                finish();
-                startActivity(getIntent());
-                return true;
-            case R.id.about:
-                Intent intent = new Intent(getBaseContext(), AboutActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
     }
 }

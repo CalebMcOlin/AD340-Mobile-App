@@ -1,16 +1,11 @@
 package mcolin.caleb.ad340;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -21,7 +16,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-public class MoviesActivity extends AppCompatActivity {
+public class MoviesActivity extends BaseActivity {
 
     String[][] movies = {
             {"Night of the Comet", "1984", "Thom Eberhardt", "https://cdn.collider.com/wp-content/uploads/2016/10/night-of-comet.jpg", "What would kids in the 1980s do if the apocalypse blew through the world without them noticing? Hang out at the mall, but of course. That’s the set-up for this very funny, quite dated horror-comedy, which begins when a quartet of adolescents lock themselves inside a projection booth at the mall’s multiplex. This somehow allows them to live through an extinction level event of some sort, which has also left roaming bands of murderous mutants. Catherine Mary Stewart of the equally inexplicable Weekend at Bernie’s leads the film, but it’s a movie of mood more than substance ultimately. Does the wealth-fueled naiveté of the average white teenager survive in a vacuum? Does it go away when they are being hunted for sustenance? It’s an interesting to watch on these terms and when the zombies show up, director Thom Eberhardt adds menace and a tight feel for suspense to the action sequences. And if we’re being honest, it belongs on this list for its soundtrack alone. The rest of this is just whip cream and cherries. – Chris Cabin"},
@@ -102,38 +97,6 @@ public class MoviesActivity extends AppCompatActivity {
                 }
             });
             return itemView;
-        }
-    }
-
-    /**
-     * MENU
-     * Shows all the menu options in the ActionBar
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    /**
-     * MENU
-     * EventHandler for all the options in the menu
-     */
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.fire:
-                Toast.makeText(this, "Refresh!", Toast.LENGTH_SHORT).show();
-                finish();
-                startActivity(getIntent());
-                return true;
-            case R.id.about:
-                Intent intent = new Intent(getBaseContext(), AboutActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
     }
 }

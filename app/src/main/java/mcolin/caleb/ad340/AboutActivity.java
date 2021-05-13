@@ -1,21 +1,13 @@
 package mcolin.caleb.ad340;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.Toast;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
-public class AboutActivity extends AppCompatActivity {
+public class AboutActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +15,7 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        // back button
+        // Back Button
         Button mbackBtn = (Button) findViewById(R.id.exitAbout);
         mbackBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
