@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".LocationActivity"
+            android:label="@string/locationLabel"
+            android:parentActivityName=".MoviesActivity" />
+        <activity
             android:name=".AboutActivity"
             android:label="@string/aboutLabel" />
         <activity

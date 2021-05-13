@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Button for the gridView
-    private final String[] btnNames = {"Movies", "Traffic Cams", "Button 3", "Button 4"};
+    private final String[] btnNames = {"Movies", "Traffic Cams", "Locations", "Button 4"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +87,11 @@ public class MainActivity extends AppCompatActivity {
             if (btn.getText() == "Movies") {
                 Intent intent = new Intent(getBaseContext(), MoviesActivity.class);
                 startActivity(intent);
-            } else if (btn.getText() == "Traffic Cams"){
+            } else if (btn.getText() == "Traffic Cams") {
                 Intent intent = new Intent(getBaseContext(), TrafficActivity.class);
+                startActivity(intent);
+            } else if ((btn.getText() == "Locations")){
+                Intent intent = new Intent(getBaseContext(), LocationActivity.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(getApplicationContext(), btn.getText(), Toast.LENGTH_SHORT).show();

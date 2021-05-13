@@ -4,6 +4,7 @@
     <string name="sendBtn">Send</string>
     <string name="movieLabel">Movies</string>
     <string name="homeLabel">Home</string>
+    <string name="locationLabel">Locations</string>
     <string name="aboutLabel">About</string>
     <string name="trafficLabel">Traffic Cams</string>
     <string name="movieImage">Movie Image</string>
