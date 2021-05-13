@@ -85,16 +85,13 @@ public class MoviesActivity extends BaseActivity {
             Picasso.get().load(movies[position][3]).into(movieImage);
 
             // OnClickListener for the view. (Each itemView will act as a button)
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // toast to notify the chosen movie title
-                    Toast.makeText(getApplicationContext(), movies[position][0], Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getBaseContext(), MoviesDetailsActivity.class);
-                    // Passing all the details to the next activity
-                    intent.putExtra("EXTRA_MOVIE_DETAILS", movies[position]);
-                    startActivity(intent);
-                }
+            itemView.setOnClickListener(v -> {
+                // toast to notify the chosen movie title
+                Toast.makeText(getApplicationContext(), movies[position][0], Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getBaseContext(), MoviesDetailsActivity.class);
+                // Passing all the details to the next activity
+                intent.putExtra("EXTRA_MOVIE_DETAILS", movies[position]);
+                startActivity(intent);
             });
             return itemView;
         }

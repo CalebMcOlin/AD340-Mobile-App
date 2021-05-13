@@ -176,7 +176,7 @@ public class TrafficActivity extends BaseActivity {
             String type = currentItem.getType();
             String address = currentItem.getAddress();
             // Setting the data to the items in the 'traffic_item.xml' using the holder below
-            holder.mCamId.setText(id + " : ");
+            holder.mCamId.setText(String.format("%s : ", id));
             holder.mCamType.setText(type);
             holder.mCamAddress.setText(address);
             Picasso.get().load(url).fit().centerInside().into(holder.mCamImage);
