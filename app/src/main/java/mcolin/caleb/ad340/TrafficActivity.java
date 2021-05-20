@@ -161,7 +161,7 @@ public class TrafficActivity extends BaseActivity {
         @NonNull
         @Override
         public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View v = LayoutInflater.from(mContext).inflate(R.layout.traffic_item, parent, false);
+            View v = LayoutInflater.from(mContext).inflate(R.layout.item_traffic, parent, false);
             return new MyViewHolder(v);
         }
 

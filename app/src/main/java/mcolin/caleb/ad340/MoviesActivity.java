@@ -71,7 +71,7 @@ public class MoviesActivity extends BaseActivity {
             // inflating and populating the given view (movies_list_item)
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             @SuppressLint("ViewHolder")
-            View itemView = inflater.inflate(R.layout.movies_list_item, parent, false);
+            View itemView = inflater.inflate(R.layout.item_movies_list, parent, false);
             // Identifying each element in the View for population
             TextView movieTitle = itemView.findViewById(R.id.movieTitle);
             TextView movieDirector = itemView.findViewById(R.id.movieDirector);
