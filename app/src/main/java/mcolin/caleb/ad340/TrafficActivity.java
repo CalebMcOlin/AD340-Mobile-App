@@ -8,7 +8,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,14 +71,18 @@ public class TrafficActivity extends BaseActivity {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, urlSource, null,
                 response -> {
                     try {
-                        // The Feature array of objects
+                        // The Array that hold all the objects within the "Features"
                         JSONArray featuresArray = response.getJSONArray("Features");
-                        // Each object within the Feature array
+                        // Touch each object within the "Features" array
                         for (int i = 0; i < featuresArray.length(); i++) {
                             JSONObject featureItem = featuresArray.getJSONObject(i);
-                            // The Camera array of objects
+                            // The Array that hold all the objects within the "PointCoordinate" (only 2 doubles within the array). No loop
+                            JSONArray pointArray = featureItem.getJSONArray("PointCoordinate");
+                            double mLong = pointArray.getDouble(0);
+                            double mLat = pointArray.getDouble(1);
+                            // The Array that hold all the objects within the "Camera"
                             JSONArray cameraArray = featureItem.getJSONArray("Cameras");
-                            // Each object within the Camera array
+                            // Touch each object within the "Camera" array (Usually only 1 item. Loop still needed).
                             for (int k = 0; k < cameraArray.length(); k++) {
                                 JSONObject cameraItem = cameraArray.getJSONObject(k);
                                 // Parsing out every string in each object of each array within each object of the main array.
@@ -88,10 +91,10 @@ public class TrafficActivity extends BaseActivity {
                                 String imageUrl = cameraItem.getString("ImageUrl");
                                 String type = cameraItem.getString("Type");
                                 // Pass the parsed data into the CamItem class
-                                camItemArrayList.add(new CamItem(id, type, address, imageUrl));
+                                camItemArrayList.add(new CamItem(id, type, address, imageUrl, mLong, mLat));
                             }
                         }
-                        // Every time the ArrayList is updated the adapter in turn in updated.
+                        // Every time the ArrayList is updated the adapter in turn is updated.
                         // This will reload the adapter open change
                         camAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
@@ -99,51 +102,6 @@ public class TrafficActivity extends BaseActivity {
                     }
                 }, Throwable::printStackTrace);
         requestQueue.add(request);
-    }
-
-    /**
-     * Inner class for each Camera item
-     */
-    public static class CamItem {
-        private final String mCamId;
-        private final String mCamType;
-        private final String mCameAddress;
-        private final String mCamImageUrl;
-
-        public CamItem(String id, String type, String address, String url) {
-            mCameAddress = address;
-            mCamId = id;
-            mCamType = type;
-            mCamImageUrl = checkType(type, url);
-        }
-
-        public String checkType(String type, String url) {
-            String newUrl = "";
-            if (type.equals("sdot")) {
-                newUrl = "https://www.seattle.gov/trafficcams/images/" + url;
-            } else if (type.equals("wsdot")) {
-                newUrl = "https://images.wsdot.wa.gov/nw/" + url;
-            } else {
-                Log.i("TAG", "incorrect type");
-            }
-            return newUrl;
-        }
-
-        public String getCamId() {
-            return mCamId;
-        }
-
-        public String getType() {
-            return mCamType;
-        }
-
-        public String getAddress() {
-            return mCameAddress;
-        }
-
-        public String getUrl() {
-            return mCamImageUrl;
-        }
     }
 
     /**
