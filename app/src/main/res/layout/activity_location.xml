@@ -14,16 +14,26 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/locationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/currentAddress"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <TextView
             android:id="@+id/locationName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/location"
+            android:textSize="18sp"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/locationLat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="12sp"
             android:text="@string/longitude"
             android:textColor="@color/black" />
 
@@ -31,6 +41,7 @@
             android:id="@+id/locationLog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="12sp"
             android:text="@string/latitude"
             android:textColor="@color/black" />
 

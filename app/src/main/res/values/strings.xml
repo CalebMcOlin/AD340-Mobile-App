@@ -13,7 +13,7 @@
     <string name="refresh">Refresh Screen</string>
     <string name="aboutOption">About</string>
     <string name="camImageDesc">Cam View</string>
-    <string name="location">Location:</string>
-    <string name="longitude">Longitude:</string>
-    <string name="latitude">Latitude:</string>
+    <string name="longitude">Longitude:\u0020</string>
+    <string name="latitude">Latitude:\u0020</string>
+    <string name="currentAddress">Current Address</string>
 </resources>

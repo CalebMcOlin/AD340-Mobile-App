@@ -3,8 +3,11 @@ package mcolin.caleb.ad340;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,12 +24,16 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class LocationActivity extends BaseActivity implements OnMapReadyCallback {
 
@@ -36,6 +43,9 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
     private RequestQueue requestQueue;
     private ArrayList<CamItem> camItemArrayList;
     private GoogleMap mMap;
+    private TextView currentLong;
+    private TextView currentLat;
+    private TextView currentAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +54,10 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
 
         requestQueue = Volley.newRequestQueue(this);
         camItemArrayList = new ArrayList<>();
+
+        currentLong = findViewById(R.id.locationLog);
+        currentLat = findViewById(R.id.locationLat);
+        currentAddress = findViewById(R.id.locationName);
 
         // Get permission. If denied exit activity, if granted proceed
         getLocationPermission();
@@ -109,7 +123,7 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
 
         // Methods
         getDeviceLocation();
-        getCameraLocation();
+        getCamLocation();
     }
 
     @SuppressLint("MissingPermission")
@@ -119,6 +133,7 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
                 if (location != null) {
                     LatLng current = new LatLng(location.getLatitude(), location.getLongitude());
+                    getCurrentAddress(current);
                     mMap.setMyLocationEnabled(true); // Show blue location dot
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 11f));  // center camera on location
                 } else {
@@ -131,15 +146,26 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
         }
     }
 
-    private void getCameraLocation() {
-        gatherData();
+    public void getCurrentAddress(LatLng current) {
+        Geocoder geocoder = new Geocoder(LocationActivity.this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(current.latitude, current.longitude, 1);
+            String address = addresses.get(0).getAddressLine(0);
+            Log.d("TEST", address);
+            currentAddress.setText(address);
+            currentLat.append(""+ current.latitude);
+            currentLong.append("" + current.longitude);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
      * Method uses the Volley library to relieve JSON data from a given url.
      * The desired data is then parsed out in to string for use in the RecyclerView
      */
-    public void gatherData() {
+    private void getCamLocation() {
         String urlSource = "https://web6.seattle.gov/Travelers/api/Map/Data?zoomId=13&type=2";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, urlSource, null,
                 response -> {
@@ -151,8 +177,8 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
                             JSONObject featureItem = featuresArray.getJSONObject(i);
                             // The Array that hold all the objects within the "PointCoordinate" (only 2 doubles within the array). No loop
                             JSONArray pointArray = featureItem.getJSONArray("PointCoordinate");
-                            double mLong = pointArray.getDouble(0);
-                            double mLat = pointArray.getDouble(1);
+                            double mLat = pointArray.getDouble(0);
+                            double mLong = pointArray.getDouble(1);
                             // The Array that hold all the objects within the "Camera"
                             JSONArray cameraArray = featureItem.getJSONArray("Cameras");
                             // Touch each object within the "Camera" array (Usually only 1 item. Loop still needed).
@@ -167,10 +193,25 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
                                 camItemArrayList.add(new CamItem(id, type, address, imageUrl, mLong, mLat));
                             }
                         }
+                        // Once the async logic is done, call this function.
+                        showMarkers();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }, Throwable::printStackTrace);
         requestQueue.add(request);
+    }
+
+    /**
+     * Displays all the locations as marker on the map
+     */
+    private void showMarkers() {
+        for (int i = 0; i < camItemArrayList.size(); i++) {
+            LatLng latLng = new LatLng(camItemArrayList.get(i).getLat(), camItemArrayList.get(i).getLong());
+            mMap.addMarker(new MarkerOptions()
+                    .position(latLng)
+                    .title(camItemArrayList.get(i).getAddress())
+                    .snippet(camItemArrayList.get(i).getCamId() + " : " + camItemArrayList.get(i).getType()));
+        }
     }
 }
