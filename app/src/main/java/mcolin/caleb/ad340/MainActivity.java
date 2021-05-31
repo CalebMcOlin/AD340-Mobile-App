@@ -30,8 +30,8 @@ public class MainActivity extends BaseActivity {
         final ButtonAdapter buttonAdapter = new ButtonAdapter(this, btnNames);
         gridView.setAdapter(buttonAdapter);
 
-        // Send button
-        Button mSendBtn = findViewById(R.id.sendBtn);
+        // Login button
+        Button mSendBtn = findViewById(R.id.button);
         mSendBtn.setOnClickListener(new BtnOnClickListener());
     }
 

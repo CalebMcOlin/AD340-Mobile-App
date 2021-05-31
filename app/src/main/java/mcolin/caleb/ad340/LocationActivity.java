@@ -153,7 +153,7 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
             String address = addresses.get(0).getAddressLine(0);
             Log.d("TEST", address);
             currentAddress.setText(address);
-            currentLat.append(""+ current.latitude);
+            currentLat.append("" + current.latitude);
             currentLong.append("" + current.longitude);
         } catch (IOException e) {
             e.printStackTrace();

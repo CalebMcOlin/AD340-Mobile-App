@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">AD 340</string>
-    <string name="textBox">Enter text here…</string>
-    <string name="sendBtn">Send</string>
+    <string name="username">Username…</string>
+    <string name="email">Email…</string>
+    <string name="password">Password…</string>
+    <string name="login">Login</string>
+    <string name="mainPage">Enter Credentials:</string>
     <string name="movieLabel">Movies</string>
     <string name="homeLabel">Home</string>
     <string name="locationLabel">Locations</string>
@@ -16,4 +19,7 @@
     <string name="longitude">Longitude:\u0020</string>
     <string name="latitude">Latitude:\u0020</string>
     <string name="currentAddress">Current Address</string>
+    <string name="hintUsername">Enter your Username</string>
+    <string name="hintEmail">Enter your Email</string>
+    <string name="hintPw">Enter your Password</string>
 </resources>
