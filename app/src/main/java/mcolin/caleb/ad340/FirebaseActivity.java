@@ -119,14 +119,13 @@ public class FirebaseActivity extends BaseActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            View rowView = inflater.inflate(R.layout.list_2_items, parent, false);
-//            TextView title = rowView.findViewById(R.id.item_title);
-//            title.setText(values.get(position).username);
-//            TextView subtitle = rowView.findViewById(R.id.item_subtitle);
-//            subtitle.setText(String.format("Updated: %s", values.get(position).updated));
+            View rowView = inflater.inflate(R.layout.list_2_items, parent, false);
+            TextView title = rowView.findViewById(R.id.item_title);
+            title.setText(values.get(position).username);
+            TextView subtitle = rowView.findViewById(R.id.item_subtitle);
+            subtitle.setText(String.format("Updated: %s", values.get(position).updated));
 
-//            return rowView;
-            return null;
+            return rowView;
         }
     }
 
