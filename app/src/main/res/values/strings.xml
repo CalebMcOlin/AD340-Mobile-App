@@ -6,6 +6,7 @@
     <string name="login">Login</string>
     <string name="mainPage">Enter Credentials:</string>
     <string name="movieLabel">Movies</string>
+    <string name="firebaseLabel">Firebase</string>
     <string name="homeLabel">Home</string>
     <string name="locationLabel">Locations</string>
     <string name="aboutLabel">About</string>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,6 +14,15 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.Objects;
 
@@ -56,6 +66,46 @@ public class MainActivity extends BaseActivity {
         updateViews();
     }
 
+//    private void signIn() {
+//        Log.d("FIREBASE", "signIn");
+//
+//        // Sign into Firebase
+//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//                Log.d("FIREBASE", "signIn:onComplete:" + task.isSuccessful());
+//
+//                if (task.isSuccessful()) {
+//                    // update profile. displayname is the value entered in UI
+//                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+//                            .setDisplayName(displayname)
+//                            .build();
+//
+//                    user.updateProfile(profileUpdates)
+//                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<Void> task) {
+//                                    if (task.isSuccessful()) {
+//                                        Log.d("FIREBASE", "User profile updated.");
+//                                        // Go to FirebaseActivity
+//                                        startActivity(new Intent(MainActivity.this, FirebaseActivity.class));
+//                                    }
+//                                }
+//                            });
+//
+//                } else {
+//                    Log.d("FIREBASE", "sign-in failed");
+//
+//                    Toast.makeText(MainActivity.this, "Sign In Failed",
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//    }
+
+
     /**
      * SHARED_PREFS
      * When called all the data within each edit text will be saved in shared preferences
@@ -97,11 +147,11 @@ public class MainActivity extends BaseActivity {
         email.setText(savedEmail);
         password.setText(savedPassword);
     }
-
-
+    
     /**
      * Checks each field for logging in.
      * Notifies the user if a field is empty.
+     *
      * @return if all fields contain values or not
      */
     private boolean validateCredentials() {
@@ -115,6 +165,7 @@ public class MainActivity extends BaseActivity {
             Toast.makeText(getApplicationContext(), "Password field is empty", Toast.LENGTH_SHORT).show();
             return false;
         } else {
+            Toast.makeText(getApplicationContext(), "Logging in...", Toast.LENGTH_SHORT).show();
             saveData();
             return true;
         }
@@ -140,10 +191,8 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             } else if (v == findViewById(R.id.button)) {
                 if (validateCredentials()) {
-                    Toast.makeText(getApplicationContext(), "Logging in...", Toast.LENGTH_SHORT).show();
-                    // singIn();
+//                    signIn();
                 }
-
             } else {
                 Toast.makeText(getApplicationContext(), btn.getText(), Toast.LENGTH_SHORT).show();
             }
