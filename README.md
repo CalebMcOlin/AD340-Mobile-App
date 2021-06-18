@@ -4,3 +4,4 @@ Homework 2 is done.
 Homework 3 is done.
 Homework 4 is done.
 Homework 5 is done.
+Homework 6 is done.
