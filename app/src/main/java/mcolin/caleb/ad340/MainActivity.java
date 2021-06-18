@@ -66,45 +66,42 @@ public class MainActivity extends BaseActivity {
         updateViews();
     }
 
-//    private void signIn() {
-//        Log.d("FIREBASE", "signIn");
-//
-//        // Sign into Firebase
-//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-//        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                Log.d("FIREBASE", "signIn:onComplete:" + task.isSuccessful());
-//
-//                if (task.isSuccessful()) {
-//                    // update profile. displayname is the value entered in UI
-//                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-//                            .setDisplayName(displayname)
-//                            .build();
-//
-//                    user.updateProfile(profileUpdates)
-//                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<Void> task) {
-//                                    if (task.isSuccessful()) {
-//                                        Log.d("FIREBASE", "User profile updated.");
-//                                        // Go to FirebaseActivity
-//                                        startActivity(new Intent(MainActivity.this, FirebaseActivity.class));
-//                                    }
-//                                }
-//                            });
-//
-//                } else {
-//                    Log.d("FIREBASE", "sign-in failed");
-//
-//                    Toast.makeText(MainActivity.this, "Sign In Failed",
-//                            Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//    }
+    private void signIn() {
+        Log.d("FIREBASE", "Login");
 
+        // Sign into Firebase
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        Log.d("FIREBASE", "Email: " + email.getText().toString());
+        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                Log.d("FIREBASE", "signIn:onComplete:" + task.isSuccessful());
+
+                if (task.isSuccessful()) {
+                    // update profile. username is the value entered in UI
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(username.getText().toString())
+                            .build();
+
+                    user.updateProfile(profileUpdates)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d("FIREBASE", "User profile updated.");
+                                        // Go to FirebaseActivity
+                                        startActivity(new Intent(MainActivity.this, FirebaseActivity.class));
+                                    }
+                                }
+                            });
+                } else {
+                    Log.d("FIREBASE", "Login failed");
+                    Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
     /**
      * SHARED_PREFS
@@ -119,7 +116,6 @@ public class MainActivity extends BaseActivity {
         editor.putString(PASSWORD, password.getText().toString());
 
         editor.apply();
-        Toast.makeText(getApplicationContext(), "data saved", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -147,7 +143,7 @@ public class MainActivity extends BaseActivity {
         email.setText(savedEmail);
         password.setText(savedPassword);
     }
-    
+
     /**
      * Checks each field for logging in.
      * Notifies the user if a field is empty.
@@ -165,7 +161,7 @@ public class MainActivity extends BaseActivity {
             Toast.makeText(getApplicationContext(), "Password field is empty", Toast.LENGTH_SHORT).show();
             return false;
         } else {
-            Toast.makeText(getApplicationContext(), "Logging in...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Trying to login...", Toast.LENGTH_SHORT).show();
             saveData();
             return true;
         }
@@ -191,7 +187,7 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             } else if (v == findViewById(R.id.button)) {
                 if (validateCredentials()) {
-//                    signIn();
+                    signIn();
                 }
             } else {
                 Toast.makeText(getApplicationContext(), btn.getText(), Toast.LENGTH_SHORT).show();
