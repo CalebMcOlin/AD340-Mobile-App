@@ -13,7 +13,7 @@
     <string name="trafficLabel">Traffic Cams</string>
     <string name="movieImage">Movie Image</string>
     <string name="back">Go back</string>
-    <string name="about">This app was made by Caleb McOlin.<br /> During his time in the Application Development program at North Seattle College.</string>
+    <string name="about">This app was made by Caleb McOlin during his time in the Application Development program at North Seattle College.</string>
     <string name="refresh">Refresh Screen</string>
     <string name="aboutOption">About</string>
     <string name="camImageDesc">Cam View</string>
