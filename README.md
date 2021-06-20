@@ -1,7 +1,2 @@
-A basic android mobile app for the AD340 class using Android Studios.
-Homework 1 is done.
-Homework 2 is done.
-Homework 3 is done.
-Homework 4 is done.
-Homework 5 is done.
-Homework 6 is done.
+## Description
+A feature rich Android mobile application that is designed to test and show off different functionalities within the android application suite. These different features include things such as using the Google Maps Api, accessing Firestore database, saving persistent data, installing third party libraries (such as Picasso), along with using different views such as CardView, RecyclerView, Adapters, Eventhandlers and Unit testing.
